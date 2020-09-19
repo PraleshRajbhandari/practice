@@ -3,15 +3,15 @@ import Main from './components/MainComponent';
 import './App.css';
 
 
-class App extends Component {
+const App = ()=>{ 
   
-  render(){
+  
     return (
       <div>
         <Main/>
       </div>
     );
   }
-}
+
 
 export default App;
