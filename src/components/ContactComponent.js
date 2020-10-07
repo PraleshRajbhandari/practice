@@ -157,13 +157,13 @@ class Contact extends Component {
                                     </Label>
                                 </div>
                             </Col>
-                            <Col md={{size:1, offset:2}}>
-                                <Control.select model=".contactType" name="contactType" 
-                                className="form-control">
-                                    <option>Tel.</option>
-                                    <option>Email</option>
-                                </Control.select>
-                            </Col>
+                            <Col md={{size: 3, offset: 1}}>
+                                    <Control.select model=".contactType" name="contactType"
+                                        className="form-control">
+                                        <option>Tel.</option>
+                                        <option>Email</option>
+                                    </Control.select>
+                                </Col> 
                         </Row>
                         <Row className="form-group">
                             <Label htmlFor="message" md={2}>Your Feedback</Label>
