@@ -5,6 +5,8 @@ import {Control, LocalForm, Errors} from "react-redux-form"
 import {Link } from 'react-router-dom';
 import {Loading} from  './LoadingComponent';
 import {baseUrl} from '../shared/baseUrl';
+import {FadeTransform, Fade, Stagger } from "react-animation-components";
+
 const required = (val) => val && val.length
 const maxLength = (len) => (val) => !(val) || (val.length <= len);
 const minLength = (len) => (val) => (val) && (val.length >= len);
@@ -106,7 +108,11 @@ class CommentForm extends Component{
             <div className='col-12 col-md-5 m-1'>
                 <h4>Comments </h4>
                 <ul className='list-unstyled'>  
-                    {coments}
+                    <Stagger in>
+                        <Fade in>
+                        {coments}
+                        </Fade>
+                    </Stagger>
                 </ul>
                 <CommentForm  dishId={dishId} postComment={postComment}/>
             </div>        
@@ -117,13 +123,18 @@ class CommentForm extends Component{
         if(dish!=null){
             return(
                 <div className='col-12 col-md-5 m-1'>
-                    <Card>
-                        <CardImg width="100%" src={baseUrl + dish.image} alt={dish.name} />
-                        <CardBody>
-                            <CardTitle>{dish.name}</CardTitle>
-                            <CardText>{dish.discription}</CardText>
-                        </CardBody>
-                    </Card>
+                    <FadeTransform in 
+                        transformProps={{
+                            exitTransform: 'scale(0.5) translateY(-50%)'
+                        }}>
+                            <Card>
+                                <CardImg width="100%" src={baseUrl + dish.image} alt={dish.name} />
+                                <CardBody>
+                                    <CardTitle>{dish.name}</CardTitle>
+                                    <CardText>{dish.discription}</CardText>
+                                </CardBody>
+                            </Card>
+                    </FadeTransform>
                 </div>            
             )
         }
@@ -166,9 +177,11 @@ class CommentForm extends Component{
                     </div>
                 <div className='row'>
                 <RenderDish dish={props.dish}/>
-                <RenderComments comments={props.comments}
+                <RenderComments 
+                                comments={props.comments}
                                 postComment = {props.postComment}
-                                dishId={props.dish.id}/>
+                                dishId={props.dish.id}
+/>
                 
                 </div>
             </div>
